@@ -1,1 +1,93 @@
-<h1>OTT Frontend Running</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OTT App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 🔴 BACKEND URL (VERCEL) -->
+  <script>
+    const API_BASE_URL = "https://prabhu-ott-fullstack.vercel.app";
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background: #000;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #e50914;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #ff1f2d;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: #222;
+      margin: 15px auto;
+      padding: 15px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .status {
+      color: lightgreen;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>🎬 OTT Frontend Running</header>
+
+  <div class="container">
+    <div class="card">
+      <h3>Backend Status</h3>
+      <button onclick="checkBackend()">Check Backend</button>
+      <p id="status" class="status"></p>
+    </div>
+  </div>
+
+  <script>
+    async function checkBackend() {
+      document.getElementById("status").innerText = "Checking...";
+
+      try {
+        const res = await fetch(API_BASE_URL);
+        const data = await res.json();
+
+        document.getElementById("status").innerText =
+          "✅ Backend Connected: " + JSON.stringify(data);
+      } catch (err) {
+        document.getElementById("status").innerText =
+          "❌ Backend not reachable";
+      }
+    }
+  </script>
+
+</body>
+</html>
